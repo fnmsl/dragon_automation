@@ -1,0 +1,63 @@
+<!<h3>🧾 执行任务总览</h3>
+<table border="1" cellspacing="0" cellpadding="8">
+  <tr>
+    <th>#</th>
+    <th>动作</th>
+    <th>标签</th>
+    <th>选择器</th>
+    <th>结果</th>
+  </tr>
+  {% for action in actions %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ action.action }}</td>
+    <td>{{ action.label }}</td>
+    <td>{{ action.selector }}</td>
+    <td>
+      {% if action.success %}
+        <span style="color:green">✔ 成功</span>
+      {% else %}
+        <span style="color:red">✖ 失败</span>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<hr>
+DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>任务执行报告</title>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    h2 { border-bottom: 2px solid #555; padding-bottom: 6px; }
+    .success { color: green; }
+    .fail { color: red; }
+    img { max-width: 600px; display: block; margin: 5px 0; border: 1px solid #aaa; }
+  </style>
+</head>
+<body>
+  <h2>📘 执行报告</h2>
+  {% for action in actions %}
+    <div>
+      <p><strong>动作:</strong> {{ action.action }} | <strong>标签:</strong> {{ action.label }} | <strong>选择器:</strong> {{ action.selector }}</p>
+      <p><strong>时间:</strong> {{ action.timestamp }}</p>
+      <p><strong>状态:</strong>
+        {% if action.success %}<span class="success">✔ 成功</span>
+        {% else %}<span class="fail">✖ 失败</span>{% endif %}
+      </p>
+      {% if action.error_msg %}
+        <p><strong>错误:</strong> {{ action.error_msg }}</p>
+      {% endif %}
+      {% if action.before_img %}
+        <p>点击前截图:</p><img src="../{{ action.before_img }}">
+      {% endif %}
+      {% if action.after_img %}
+        <p>点击后截图:</p><img src="../{{ action.after_img }}">
+      {% endif %}
+      <hr>
+    </div>
+  {% endfor %}
+</body>
+</html>

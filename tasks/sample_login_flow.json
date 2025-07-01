@@ -1,0 +1,25 @@
+[
+  {
+    "action": "goto",
+    "url": "https://example.com/login"
+  },
+  {
+    "action": "fill",
+    "selector": "#username",
+    "value": "huajie001"
+  },
+  {
+    "action": "fill",
+    "selector": "#password",
+    "value": "123456"
+  },
+  {
+    "action": "click",
+    "selector": "#login-button",
+    "label": "login"
+  },
+  {
+    "action": "screenshot",
+    "label": "after_login"
+  }
+]
